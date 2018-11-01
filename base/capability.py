@@ -8,7 +8,7 @@ from appium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 
 
-# 获取项目的根目录路径
+# 获取项目的根目录路径a
 p = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), ".."))
 # 获取app路径
 appPath = lambda x: os.path.join(p, "app", x)
