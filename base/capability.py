@@ -7,7 +7,6 @@ sys.path.append(Path)
 from appium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 
-
 # 获取项目的根目录路径a
 p = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), ".."))
 # 获取app路径
@@ -18,7 +17,7 @@ desired_caps = {
     'deviceName': 'mi3',
     'platformVersion': '4.4.2',
     'app': appPath("2.9.5.apk"),
-    'noReset': True,
+    'noReset': False,
     'unicodeKeyboard': True,
     'appPackage': 'com.example.homeking.client',
     'appActivity': 'com.example.homeking.client.controllers.intro.IntroActivity'
@@ -28,7 +27,7 @@ driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
 driver.implicitly_wait(6)
 
 
-def swipLeft(driver, t=1000, n=3):
+def swipLeft(driver, t=2000, n=3):
     '''向左滑动屏幕'''
     l = driver.get_window_size()
     x1 = l['width'] * 0.75
@@ -74,3 +73,8 @@ def check_p():
 
 
 check_wlcome()
+driver.find_element_by_id('com.example.homeking.client:id/jk').click()
+
+aa = driver.context
+print(aa)
+driver.press_keycode(4)
