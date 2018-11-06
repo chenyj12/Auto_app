@@ -4,13 +4,13 @@ import os
 curPath = os.path.abspath(os.path.dirname(__file__))
 Path = os.path.split(curPath)[0]
 sys.path.append(Path)
-from base import my
+from base import myunit
 from pages.loginpage import LoginPage
 from pages.welcome import Welcome
 import unittest
 
 
-class TestLogin(my.startEnd):
+class TestLogin(myunit.startEnd):
 
     def test01(self):
         we = Welcome(self.driver)

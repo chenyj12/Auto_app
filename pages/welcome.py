@@ -14,15 +14,16 @@ class Welcome(PageBase):
         try:
             sw1 = self.find_element(*self.sw)
             print('在欢迎页面引导页面')
-        except NoSuchElementException:
-            print('已跳过欢迎页')
-        else:
             self.swipLeft()
             # self.swipLeft(self.driver)
             self.find_element(*self.expence).click()
             self.find_element(*self.citycode).click()
             self.check_pop()
-            # self.check_ad()
+        except NoSuchElementException:
+            print('已初始化过')
+        # else:
+        #
+        #     # self.check_ad()
 
     def check_ad(self):
         try:

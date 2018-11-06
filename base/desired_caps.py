@@ -19,7 +19,7 @@ class AppiumTest:
             'deviceName': 'mi3',
             'platformVersion': '4.4.2',
             'app': appPath("2.9.5.apk"),
-            'noReset': True,
+            'noReset': False,
             'unicodeKeyboard': True,
             'appPackage': 'com.example.homeking.client',
             'appActivity': 'com.example.homeking.client.controllers.intro.IntroActivity'
