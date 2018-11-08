@@ -1,6 +1,9 @@
 from selenium.webdriver.common.by import By
 from base.pagebase import PageBase
 from selenium.common.exceptions import NoSuchElementException
+from base.logger import Logger
+
+logger = Logger(logger="LoginPage").getlog()
 
 
 class LoginPage(PageBase):
@@ -13,14 +16,12 @@ class LoginPage(PageBase):
 
     def login(self, phones, paw):
         try:
-            self.find_element(*self.meBtn).click()
+            self.click(*self.meBtn)
             id = self.find_element(*self.id).text
-            print('已登录,用户ID为%s' % id)
+            logger.info('已登录,用户ID为%s' % id)
         except NoSuchElementException:
-            print('点击进行登录')
-            self.find_element(*self.passlogin).click()
+            self.click(*self.passlogin)
             self.find_element(*self.phone).send_keys(phones)
             self.find_element(*self.passw).send_keys(paw)
-            self.find_element(*self.loginbtn).click()
-            print('登录完成')
+            self.click(*self.loginbtn)
 

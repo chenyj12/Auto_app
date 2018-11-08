@@ -1,6 +1,9 @@
 from selenium.webdriver.common.by import By
 from base.pagebase import PageBase
 from selenium.common.exceptions import NoSuchElementException
+from base.logger import Logger
+
+logger = Logger(logger="Welcome").getlog()
 
 
 class Welcome(PageBase):
@@ -13,17 +16,13 @@ class Welcome(PageBase):
     def check_wlcome(self):
         try:
             sw1 = self.find_element(*self.sw)
-            print('在欢迎页面引导页面')
+            logger.info('在欢迎页面引导页面')
             self.swipLeft()
-            # self.swipLeft(self.driver)
-            self.find_element(*self.expence).click()
-            self.find_element(*self.citycode).click()
+            self.click(*self.expence)
+            self.click(*self.citycode)
             self.check_pop()
         except NoSuchElementException:
-            print('已初始化过')
-        # else:
-        #
-        #     # self.check_ad()
+            self.check_pop()
 
     def check_ad(self):
         try:
@@ -36,7 +35,7 @@ class Welcome(PageBase):
 
     def check_pop(self):
         try:
-            self.find_element(*self.popBtn).click()
-            print('存在弹屏')
+            self.click(*self.popBtn)
+            logger.info('有弹屏广告，关闭广告图')
         except NoSuchElementException:
-            print('没有弹屏')
+            logger.info('没有弹屏广告，不执行操作')

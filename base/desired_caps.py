@@ -25,7 +25,7 @@ class AppiumTest:
             'appActivity': 'com.example.homeking.client.controllers.intro.IntroActivity'
         }
         self.driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
-        self.driver.implicitly_wait(10)
+        self.driver.implicitly_wait(6)
 
     def get_driver(self):
         return self.driver

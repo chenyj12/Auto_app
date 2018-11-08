@@ -6,7 +6,8 @@ Path = os.path.split(curPath)[0]
 sys.path.append(Path)
 from email.mime.multipart import MIMEMultipart
 import unittest
-from HTMLTestRunner_cn import HTMLTestRunner
+# from HTMLTestRunner_cn import HTMLTestRunner
+from test_run.HTMLTestReportCN import HTMLTestRunner
 import time
 from email.mime.text import MIMEText
 from email.header import Header
@@ -43,7 +44,6 @@ def send_mail(newfile):
     subject = '测试报告'
 
     #报告正文
-
     # text="Dear all!\n附件是最新测试报告。\n麻烦下载下来观看，用户火狐浏览器打开。\n请知悉，谢谢！"
     # msg_plain=MIMEText(text,'plain','utf-8')
     # msg.attach(msg_plain)
@@ -73,13 +73,10 @@ if __name__ == '__main__':
     report_dir = 'F:\\Auto_app\\test_result\\report'
     now = time.strftime('%Y-%m-%d-%H_%M_%S')
     report_name = report_dir + '/' + now + 'report.html'
-
     with open(report_name, 'wb') as f:
-        runner = HTMLTestRunner(stream=f, title='测试报告', description='测试结果')
-
+        runner = HTMLTestRunner(stream=f, title='测试报告',tester='chenyoajie')
         runner.run(discovery)
     f.close()
-
     new_report = new_file(report_dir)
     send_mail(new_report)
 
