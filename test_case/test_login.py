@@ -6,40 +6,28 @@ Path = os.path.split(curPath)[0]
 sys.path.append(Path)
 from base import myunit
 from pages.loginpage import LoginPage
-from pages.welcome import Welcome
 import unittest
 
 
 class TestLogin(myunit.startEnd):
 
     def test03(self):
-        '''
-        账号密码正确
-        '''
-        we = Welcome(self.driver)
-        we.check_wlcome()
+        '''账号密码输入正确'''
         lo = LoginPage(self.driver)
         lo.login('15060785807', 'a147258')
+        self.assertTrue(lo.check_loginStatus())
 
     def test02(self):
-        '''
-        账号或密码错误
-        '''
-
-        we = Welcome(self.driver)
-        we.check_wlcome()
+        '''账号或密码输入错误'''
         lo = LoginPage(self.driver)
-        lo.login('15060785807a', 'a147258')
+        lo.login('15060785807', 'a11147258')
+        self.assertFalse(lo.check_loginStatus(), msg='登录失败')
 
     def test01(self):
-        '''
-        账号或密码为空
-        '''
-        we = Welcome(self.driver)
-        we.check_wlcome()
+        ''' 账号或密码输入为空'''
         lo = LoginPage(self.driver)
         lo.login('', '')
-
+        self.assertFalse(lo.check_loginStatus(), msg='登录失败')
 
 if __name__ == '__main__':
     unittest.main()

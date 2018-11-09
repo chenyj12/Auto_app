@@ -6,8 +6,8 @@ Path = os.path.split(curPath)[0]
 sys.path.append(Path)
 from email.mime.multipart import MIMEMultipart
 import unittest
-# from HTMLTestRunner_cn import HTMLTestRunner
-from test_run.HTMLTestReportCN import HTMLTestRunner
+from HTMLTestRunner_cn import HTMLTestRunner
+# from test_run.HTMLTestReportCN import HTMLTestRunner
 import time
 from email.mime.text import MIMEText
 from email.header import Header
@@ -66,7 +66,7 @@ def send_mail(newfile):
     print('开始发送邮件')
     smtp.sendmail(sender, receivers, msg.as_string())
     smtp.quit()
-    print('邮件发送结束')
+    print('邮件发送完成')
 
 
 if __name__ == '__main__':
@@ -74,7 +74,7 @@ if __name__ == '__main__':
     now = time.strftime('%Y-%m-%d-%H_%M_%S')
     report_name = report_dir + '/' + now + 'report.html'
     with open(report_name, 'wb') as f:
-        runner = HTMLTestRunner(stream=f, title='测试报告',tester='chenyoajie')
+        runner = HTMLTestRunner(stream=f, title='测试报告')
         runner.run(discovery)
     f.close()
     new_report = new_file(report_dir)
