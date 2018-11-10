@@ -16,8 +16,8 @@ class AppiumTest:
     def __init__(self):
         desired_caps = {
             'platformName': 'Android',
-            'deviceName': 'mi3',
-            'platformVersion': '4.4.2',
+            'deviceName': '1ce884567d53',
+            'platformVersion': '6.0.1',
             'app': appPath("2.9.5.apk"),
             'noReset': False,
             'unicodeKeyboard': True,
@@ -25,7 +25,7 @@ class AppiumTest:
             'appActivity': 'com.example.homeking.client.controllers.intro.IntroActivity'
         }
         self.driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
-        self.driver.implicitly_wait(4)
+        self.driver.implicitly_wait(8)
 
     def get_driver(self):
         return self.driver

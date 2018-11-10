@@ -4,6 +4,7 @@ from selenium.common.exceptions import NoSuchElementException
 from base.logger import Logger
 from time import sleep
 
+
 logger = Logger(logger="LoginPage").getlog()
 
 
@@ -15,31 +16,35 @@ class LoginPage(PageBase):
     loginbtn = (By.ID, 'com.example.homeking.client:id/zq')
     meBtn = (By.ID, 'com.example.homeking.client:id/v5')
     id = (By.ID, 'com.example.homeking.client:id/a40')
-     # 欢迎页相关控件
+    # 欢迎页相关控件
     sw = (By.ID, 'com.example.homeking.client:id/i5')
     expence = (By.ID, 'com.example.homeking.client:id/z0')
-    citycode = (By.XPATH, '//android.widget.CheckBox[@text=\"厦门\"]')
+    citycode = (By.XPATH, '//android.widget.CheckBox[@text=\"广州\"]')
     skipBtn = (By.ID, 'com.example.homeking.client:id/a2l')
     popBtn = (By.ID, 'com.example.homeking.client:id/is')
     # 退出相关控件
     setting = (By.ID, 'com.example.homeking.client:id/u0')
     lgoinout = (By.ID, 'com.example.homeking.client:id/zr')
     queding = (By.ID, 'com.example.homeking.client:id/d1')
+    allows = (By.ID, 'android:id/button1')
 
     def login_out(self):
+        sleep(2)
         logger.info('-----退出账号操作-----')
         self.swipToElement(*self.setting)
         self.click(*self.lgoinout)
         self.click(*self.queding)
 
-
     def check_wlcome(self):
+        self.alawys_allow()
         try:
             sw1 = self.find_element(*self.sw)
             logger.info('在欢迎页面引导页面')
             self.swipLeft()
             self.click(*self.expence)
+            sleep(2)
             self.click(*self.citycode)
+            sleep(5)
             self.check_pop()
         except NoSuchElementException:
             self.check_pop()
@@ -88,3 +93,11 @@ class LoginPage(PageBase):
             logger.info('登录成功!')
             self.login_out()
             return True
+
+    def alawys_allow(self, number=2):
+        for i in range(number):
+            try:
+                self.click(*self.allows)
+                logger.info('进行去除相关权限操作')
+            except:
+                pass

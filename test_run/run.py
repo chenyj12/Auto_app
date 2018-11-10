@@ -6,8 +6,8 @@ Path = os.path.split(curPath)[0]
 sys.path.append(Path)
 from email.mime.multipart import MIMEMultipart
 import unittest
-from HTMLTestRunner_cn import HTMLTestRunner
-# from test_run.HTMLTestReportCN import HTMLTestRunner
+# from HTMLTestRunner_cn import HTMLTestRunner
+from test_run.HTMLTestReportCN import HTMLTestRunner
 import time
 from email.mime.text import MIMEText
 from email.header import Header

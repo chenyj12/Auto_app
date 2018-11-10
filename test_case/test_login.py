@@ -26,7 +26,7 @@ class TestLogin(myunit.startEnd):
     def test01(self):
         ''' 账号或密码输入为空'''
         lo = LoginPage(self.driver)
-        lo.login('', '')
+        lo.login('150', '')
         self.assertFalse(lo.check_loginStatus(), msg='登录失败')
 
 if __name__ == '__main__':
