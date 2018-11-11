@@ -15,5 +15,5 @@ class startEnd(unittest.TestCase):
         self.driver = at.get_driver()
 
     def tearDown(self):
-        sleep(5)
+        sleep(2)
         self.driver.close_app()

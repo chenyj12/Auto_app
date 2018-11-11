@@ -5,6 +5,10 @@ curPath = os.path.abspath(os.path.dirname(__file__))
 Path = os.path.split(curPath)[0]
 sys.path.append(Path)
 from appium import webdriver
+from base.logger import Logger
+
+
+logger = Logger(logger="AppiumTest").getlog()
 
 # 获取项目的根目录路径a
 p = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), ".."))
@@ -16,14 +20,15 @@ class AppiumTest:
     def __init__(self):
         desired_caps = {
             'platformName': 'Android',
-            'deviceName': '1ce884567d53',
-            'platformVersion': '6.0.1',
+            'deviceName': 'mi 3',
+            'platformVersion': '4.4.2',
             'app': appPath("2.9.5.apk"),
             'noReset': False,
             'unicodeKeyboard': True,
             'appPackage': 'com.example.homeking.client',
             'appActivity': 'com.example.homeking.client.controllers.intro.IntroActivity'
         }
+        logger.info('启动APP')
         self.driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
         self.driver.implicitly_wait(8)
 

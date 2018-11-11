@@ -26,6 +26,7 @@ class LoginPage(PageBase):
     setting = (By.ID, 'com.example.homeking.client:id/u0')
     lgoinout = (By.ID, 'com.example.homeking.client:id/zr')
     queding = (By.ID, 'com.example.homeking.client:id/d1')
+    #权限允许
     allows = (By.ID, 'android:id/button1')
 
     def login_out(self):
@@ -36,6 +37,7 @@ class LoginPage(PageBase):
         self.click(*self.queding)
 
     def check_wlcome(self):
+        logger.info('-----检查是否在欢迎引导页面-----')
         self.alawys_allow()
         try:
             sw1 = self.find_element(*self.sw)
@@ -50,6 +52,7 @@ class LoginPage(PageBase):
             self.check_pop()
 
     def check_ad(self):
+        logger.info('-----检查是否有广告图-----')
         try:
             skipBtn = self.find_element(*self.skipBtn)
             print('存在广告图')
@@ -59,6 +62,7 @@ class LoginPage(PageBase):
             skipBtn.click()
 
     def check_pop(self):
+        logger.info('-----检查是否有弹屏广告-----')
         try:
             self.click(*self.popBtn)
             logger.info('有弹屏广告，关闭广告图')
@@ -74,13 +78,15 @@ class LoginPage(PageBase):
         except NoSuchElementException:
             logger.info('-----开始执行登录操作------')
             self.click(*self.passlogin)
+            logger.info('输入的用户名：%s'%username)
             self.find_element(*self.phone).send_keys(username)
+            logger.info('输入的密码：%s' % password)
             self.find_element(*self.passw).send_keys(password)
             sleep(1)
             self.click(*self.loginbtn)
 
     def check_loginStatus(self):
-        logger.info('检查登录信息')
+        logger.info('-----检查登录状态-----')
         try:
             self.click(*self.meBtn)
             id = self.find_element(*self.id).text
@@ -95,9 +101,9 @@ class LoginPage(PageBase):
             return True
 
     def alawys_allow(self, number=2):
+        logger.info('-----检查是否存在权限确认-----')
         for i in range(number):
             try:
                 self.click(*self.allows)
-                logger.info('进行去除相关权限操作')
             except:
                 pass

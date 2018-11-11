@@ -1,5 +1,4 @@
 from base.logger import Logger
-import os
 import time
 
 logger = Logger(logger="PageBase").getlog()
