@@ -37,10 +37,10 @@ def send_mail(newfile):
     f.close()
     #邮件服务器内容
     smtpserver = 'smtp.qq.com'
-    user = '724253911@qq.com'
-    password = 'hrdfkupqxsambdgf'
-    sender = '724253911@qq.com'
-    receivers = ['867773842@qq.com', 'chenyaojie@homeking365.com']
+    user = 'xxx@qq.com'
+    password = 'xxx'
+    sender = 'xxxx@qq.com'
+    receivers = ['xxxx@qq.com', 'xxxxx@homeking365.com']
     subject = '测试报告'
 
     #报告正文
